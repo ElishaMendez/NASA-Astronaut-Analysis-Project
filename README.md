@@ -2,8 +2,8 @@
 
 This was a made up project using a Kaggle dataset
   https://www.kaggle.com/nasa/astronaut-yearbook
-Technologies Used
-SQL
+  
+Technologies Used: SQL
 
 ## Features
 - Summary Statistics (AVG, MAX, MIN)
