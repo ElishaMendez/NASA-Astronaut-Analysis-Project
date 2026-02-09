@@ -84,5 +84,62 @@ CREATE TABLE astronauts(
    Death_Date          TEXT, 
    Death_Mission       TEXT
 );
+# Background and Overview
+This is a personal learning project designed to practice SQL skills using publicly available NASA astronaut data. Using a Kaggle dataset, I explored astronaut profiles to practice data analysis techniques including summary statistics, conditional logic, grouping, and filtering.The analysis focuses on:
+
+Practicing aggregate functions to summarize spaceflight experience data
+Using GROUP BY and HAVING to identify patterns across educational backgrounds
+Applying CASE statements to create custom classifications
+Building multi-condition filters to extract specific data subsets
+
+<p>The complete SQL code and dataset can be accessed <a href="https://github.com/ElishaMendez/NASA-Astronaut-Yearbook-Analysis" target="_blank">here.</a></p>
+<p>Dataset source: <a href="https://www.kaggle.com/nasa/astronaut-yearbook" target="_blank">Kaggle - NASA Astronaut Yearbook</a></p>
+
+# Data Structure Overview
+- Primary Source: Kaggle NASA Astronaut Yearbook dataset (practice dataset)
+- Records: Full roster of NASA astronauts with biographical and mission data
+- Key Fields: Name, birth information, educational background (undergraduate and graduate majors), military rank and branch, spaceflight hours, spacewalk hours, mission details, and status
+- Analysis Tool: SQL (aggregate functions, conditional logic, grouping, and filtering)
+
+# Executive Summary
+### Overview of Findings
+This practice project allowed me to apply SQL fundamentals to a real-world dataset. I calculated summary statistics on spaceflight hours, grouped astronauts by their graduate majors to explore experience patterns, and created a custom ranking system based on total flight hours.
+Key techniques practiced:
+- Using AVG, MAX, and MIN to understand data ranges
+- Applying GROUP BY with HAVING to filter aggregated results
+- Building CASE statements to create new categorical variables
+- Combining AND/OR logic for complex filtering
+
+Below are key SQL queries used in this analysis:
+--- Summary Statistics ---
+SELECT
+    ROUND(AVG(Space_Flight_hr)) AS Average_hrs,
+    MAX(Space_Flight_hr) AS Max_hrs, 
+    MIN(Space_Flight_hr) AS Min_hrs
+FROM astronauts;
+
+--- Experience by Graduate Major ---
+SELECT Graduate_Major, AVG(Space_Flight_hr) AS Avg_hours
+FROM astronauts
+GROUP BY Graduate_Major
+HAVING AVG(Space_Flight_hr) <= 100
+ORDER BY Avg_Hours;
+
+--- Custom Expertise Classification ---
+SELECT name, Space_Flight_hr AS space_HOURS,
+    CASE
+        WHEN Space_Flight_hr > 1000 THEN 'Senior Spacewalker'
+        WHEN Space_Flight_hr > 500 THEN 'Spacewalker'
+        WHEN Space_Flight_hr > 100 THEN 'Junior Spacewalker'
+        ELSE 'Novice Spacewalker'
+    END AS Space_Rank
+FROM astronauts
+ORDER BY Space_Flight_hr DESC;
+
+
+# Insights Deep Dive
+
+# Recommendations
+
 
 
