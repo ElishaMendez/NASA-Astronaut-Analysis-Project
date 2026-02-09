@@ -24,30 +24,11 @@ I grouped astronauts by their graduate majors and discovered that certain academ
 Additionally, I used multi-condition filtering to identify astronauts with specific combinations of educational and military backgrounds, such as Mechanical Engineering graduates who hold the rank of Colonel or Major—a profile that appears frequently in the dataset.
 
 Below are key SQL queries used in this analysis:
---- Summary Statistics ---
-SELECT
-    ROUND(AVG(Space_Flight_hr)) AS Average_hrs,
-    MAX(Space_Flight_hr) AS Max_hrs, 
-    MIN(Space_Flight_hr) AS Min_hrs
-FROM astronauts;
-
---- Experience by Graduate Major ---
-SELECT Graduate_Major, AVG(Space_Flight_hr) AS Avg_hours
-FROM astronauts
-GROUP BY Graduate_Major
-HAVING AVG(Space_Flight_hr) <= 100
-ORDER BY Avg_Hours;
-
---- Custom Expertise Classification ---
-SELECT name, Space_Flight_hr AS space_HOURS,
-    CASE
-        WHEN Space_Flight_hr > 1000 THEN 'Senior Spacewalker'
-        WHEN Space_Flight_hr > 500 THEN 'Spacewalker'
-        WHEN Space_Flight_hr > 100 THEN 'Junior Spacewalker'
-        ELSE 'Novice Spacewalker'
-    END AS Space_Rank
-FROM astronauts
-ORDER BY Space_Flight_hr DESC;
+<div align="center">
+  <img src="images/summary_statistics.JPG" height="700" width="200"/>
+  <img src="images/experience by graduate majors.JPG" height="700" width="200"/>
+  <img src="images/custom expertiese classification.JPG" height="700" width="200"/>
+</div>
 
 # Insights Deep Dive
 - **Wide Experience Range Reveals Career Stage Distribution**
@@ -58,6 +39,7 @@ Certain graduate majors show consistently lower average flight hours. This patte
 My analysis revealed that only a handful of astronauts achieve Senior Spacewalker status (1,000+ hours), representing years of multiple long-duration missions. The data shows a steep pyramid structure: many novices, fewer mid-career astronauts, and very few veterans.
 - **Military Leadership Background Remains a Strong Predictor**
 I observed that the combination of engineering degrees with senior military ranks (Colonel/Major) appears frequently among high-experience astronauts. This pattern suggests NASA may value both technical expertise and proven leadership under high-pressure conditions.
+
 # Recommendations
 - **Time-Series Trends:** Analyze how astronaut profiles have evolved over decades by grouping astronauts by their selection year to identify shifting priorities in NASA's recruitment strategy
 - **Predictive Modeling:** Build a model to predict which astronaut profiles are most likely to achieve 500+ flight hours based on educational background, military rank, and selection year
